@@ -8,10 +8,11 @@ namespace ListShop.BLL.EntitesDTO
 {
     public class UserDTO
     {
-        public int Id_user { get; set; }
+        public int Id { get; set; }
         public string Login { get; set; }
-        public string Password { get; set; }
         public string Email { get; set; }
-        public bool Role { get; set; }
+        public string Count_Like { get; set; }
+        
+        
     }
 }

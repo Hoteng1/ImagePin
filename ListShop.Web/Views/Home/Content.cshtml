@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ListShop.Web.Models.ImageModel>
+@{
+    ViewBag.Title = "Rating";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Own_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountLike)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Own_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountLike)
+        </td>
+        <td>
+            <div class="card-img-top">
+                @Html.Raw("<img style='width:60px; height:60px;'   src=\"data:image/jpeg;base64,"
+                              + Convert.ToBase64String(item.Resurse) + "\" />")
+            </div>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

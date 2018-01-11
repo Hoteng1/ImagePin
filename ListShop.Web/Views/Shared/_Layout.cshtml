@@ -36,9 +36,9 @@
                                 <img src="~/Resurce/icon.jpg"  width="30" height="30" alt=""/>
                             </a>
                             @Html.ActionLink("PinImage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                            @Html.ActionLink("Rating", "Rating", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                            @Html.ActionLink("Liked", "Liked", "Image", new { area = "" }, new { @class = "navbar-brand" })
-                            @Html.ActionLink("Tape", "Taped", "Image", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Рейтинг", "Rating", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Понравившиеся", "Liked", "Image", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Лента", "Taped", "Image", new { area = "" }, new { @class = "navbar-brand" })
                             <ul class="nav nav-pills pull-right">
                                 @Html.Action("UserLogin", "Home")
                             </ul>
@@ -51,7 +51,7 @@
             
         </div>
 
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery-3.2.1.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,9 +1,4 @@
 ﻿using ImagePinned.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ImagePinned.DAL.EF;
 using ListShop.DAL.Repository;
 using ListShop.DAL.Entities;

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ListShop.Web.Models.ImageModel>
+
+<div id="model">
+
+    @foreach (var item in Model)
+    {
+        <div class=" col-lg-8 col-lg-offset-3">
+            <div class="card bg-gradient-primary">
+                <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                <div class="card-img-top">
+                    @Html.Raw("<img style='width:600px; height:600px;'   src=\"data:image/jpeg;base64,"
+                              + Convert.ToBase64String(item.Resurse) + "\" />")
+                </div>
+                <div class="card-block bg-gradient-primary">
+                    <hr class="my-4">
+                    <p>#@Ajax.ActionLink(item.Pin, "Category", new { pin = item.Pin }, new AjaxOptions { UpdateTargetId = "model" })</p>
+                    <p>Создатель: @Ajax.ActionLink(item.Own_Name, "Category", new { pin = "", Own = item.Own_Name }, new AjaxOptions { UpdateTargetId = "model" })</p>
+                    <div>@Html.Action("Like", new { Id = item.Id })</div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

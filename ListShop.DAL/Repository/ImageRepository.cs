@@ -46,6 +46,7 @@ namespace ListShop.DAL.Repository
 
         public Image Update(Image item)
         {
+            
             db.Entry(item).State = System.Data.Entity.EntityState.Modified;
             this.db.SaveChanges();
 

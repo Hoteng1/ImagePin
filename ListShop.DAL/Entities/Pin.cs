@@ -9,6 +9,6 @@ namespace ListShop.DAL.Entities
     public class Pin
     {
         public int Id { get; set;}
-        public string Tititle { get; set; }
+        public string Title { get; set; }
     }
 }

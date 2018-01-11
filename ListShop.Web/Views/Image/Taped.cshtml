@@ -5,32 +5,67 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Taped</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create", new { area = "" }, new { @class = "navbar-brand" })
-</p>
-
-@foreach (var item in Model) {
-    <div class=" col-lg-8 col-lg-offset-3">
-        <div class="card bg-gradient-primary">
-            <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
-            <div class="card-img-top">
-                @Html.Raw("<img style='width:600px; height:600px;'   src=\"data:image/jpeg;base64,"
-                              + Convert.ToBase64String(item.Resurse) + "\" />")
-            </div>
-            <div class="card-block bg-gradient-primary">
-            <hr class="my-4">
-                <p>#@Html.ActionLink(item.Pin.ToString(),"Category")</p>
-                <p>Own:@Html.DisplayFor(modelItem => item.Own_Name)</p>
-                <p><div id=@item.Id.ToString()>@Html.DisplayFor(modelItem => item.CountLike)</div>@Ajax.ActionLink(" ", "Likes", new { Id = item.Id }, new AjaxOptions { UpdateTargetId = item.Id.ToString(), InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "glyphicon glyphicon-heart" })</p>
-        </div>
-    </div>
-        </div>
-    
-}
+<h2>Лента</h2>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
 <script src="~/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
 <script src="~/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
 
+<p>
+    <button type="button" class="badge badge-primary" data-toggle="modal" data-target="#myModal">
+        Добавить пин
+    </button>
+    @Html.ActionLink("Добавить изображение", "Create", new { area = "" }, new { @class = "badge badge-primary" })
+
+    @Ajax.ActionLink("Список Предпочтений", "ShowPrefer", new { }, new AjaxOptions { UpdateTargetId = "model" }, new { @class = "badge badge-primary" })
+
+
+</p>
+<div id="model">
+
+    @foreach (var item in Model)
+    {
+        <div class=" col-lg-8 col-lg-offset-3">
+            <div class="card bg-gradient-primary">
+                <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                <div class="card-img-top">
+                    @Html.Raw("<img style='width:600px; height:600px;'   src=\"data:image/jpeg;base64,"
+                              + Convert.ToBase64String(item.Resurse) + "\" />")
+                </div>
+                <div class="card-block bg-gradient-primary">
+                    <hr class="my-4">
+                    <p>#@Ajax.ActionLink(item.Pin, "Category", new { pin = item.Pin, Own = "" }, new AjaxOptions { UpdateTargetId = "model" })</p>
+                    <p>Создатель: @Ajax.ActionLink(item.Own_Name, "Category", new { pin ="",Own=item.Own_Name }, new AjaxOptions { UpdateTargetId = "model" })</p>
+                    <div>@Html.Action("Like", new { Id = item.Id })</div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Создать Пин</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="CreatePin">
+                    Название
+                    <input type="text" name="Pin" />
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 

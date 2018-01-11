@@ -1,11 +1,16 @@
-﻿@model ListShop.Web.Models.UserModel
-@if (Model != null)
+﻿@model ListShop.Web.Models.UserViews
+@if (Model.Email != null)
 {
-    <li>@Model.Login</li>
-    <li>@Html.ActionLink("Выход", "Logout", "Login")</li>
+    if (Model.Role)
+    {
+        <li>@Html.ActionLink("AdminPanel", "AdminPanel", "Home")</li>
+    }
+    <li>@Html.ActionLink(@Model.Email,"Profiles","Home")</li>
+    <li>@Html.ActionLink("Выход", "Logout", "Account")</li>
+
 }
 else
 {
-    <li>@Html.ActionLink("Вход", "Index", "Login")</li>
-    <li>@Html.ActionLink("Регистрация", "Register", "User")</li>
+    <li>@Html.ActionLink("Вход", "Login", "Account")</li>
+    <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>
 }

@@ -4,12 +4,14 @@
     ViewBag.Title = "Liked";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<script src="~/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+<script src="~/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
 <h2>Liked</h2>
 
 @foreach (var item in Model)
 {
-    <div class=" col-lg-4 col-lg-offset-1">
+    <div class=" col-lg-5 col-lg-offset-1">
         <div class="card bg-gradient-primary">
             <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
             <div class="card-img-top">
@@ -20,7 +22,7 @@
                 <hr class="my-4">
                 <p>#@Html.DisplayFor(modelItem => item.Pin)</p>
                 <p>Own:@Html.DisplayFor(modelItem => item.Own_Name)</p>
-                
+                <div>@Html.Action("Like", new { Id = item.Id })</div>
             </div>
         </div>
     </div>

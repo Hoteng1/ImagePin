@@ -8,6 +8,6 @@ namespace ListShop.BLL.EntitesDTO
 {
     public class PinDTO
     {
-        public string Tititle { get; set; }
+        public string Title { get; set; }
     }
 }
