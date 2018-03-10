@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ImagePinned.Web.Models.UserRating>
+<div id="RatingUser">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Место</th>
+                <th>Имя</th>
+                <th>Email</th>
+                <th>Лайки</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+               <tr>
+                   <td>@item.Id</td>
+                   <td>@item.Email</td>
+                   <td>@item.Login</td>
+                   <td>@item.Count_Like</td>
+               </tr>
+            }
+        </tbody>
+    </table>
+   
+</div>
+

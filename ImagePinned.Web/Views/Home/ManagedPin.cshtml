@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ImagePinned.Web.Models.PinModel>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+         
+            @Html.ActionLink("Удалить", "PinDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

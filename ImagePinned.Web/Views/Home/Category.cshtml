@@ -1,0 +1,12 @@
+﻿@model IEnumerable<ImagePinned.Web.Models.PinView>
+<div class="col-lg-2 col-lg-offset-0">
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">@Html.ActionLink(item.Title, "DeletePin", new { Pin = item.Title }) </li>
+        }
+
+    </ul>
+</div>
+
+
