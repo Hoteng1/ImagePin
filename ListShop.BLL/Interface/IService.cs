@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ImagePinned.BLL.Interface
 {
-    public interface IService
+    public interface IService : IDisposable
     {
         void CreateImage(ImageDTO image,string teg , string own_name);
         void CreateUser(UserDTO userDTO);

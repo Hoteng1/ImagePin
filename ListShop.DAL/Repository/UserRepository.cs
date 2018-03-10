@@ -1,6 +1,7 @@
-﻿using ImagePinned.DAL.EF;
+﻿
 using ImagePinned.DAL.Interfaces;
 using ListShop.DAL.Entities;
+using ListShop.DAL.Indentity.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace ListShop.DAL.Repository
 {
     public class UserRepository : IRepository<User>
     {
-        PinContext db;
+        ApplicationContext db;
 
-        public UserRepository(PinContext db)
+        public UserRepository(ApplicationContext db)
         {
             this.db = db;
         }
@@ -21,16 +22,16 @@ namespace ListShop.DAL.Repository
         public void Create(User item)
         {
            
-            this.db.Users.Add(item);
+            this.db.DbUsers.Add(item);
             this.db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            User user = this.db.Users.Find(id);
+            User user = this.db.DbUsers.Find(id);
             if (user != null)
             {
-                this.db.Users.Remove(user);
+                this.db.DbUsers.Remove(user);
                 this.db.SaveChanges();
             }
            
@@ -38,12 +39,12 @@ namespace ListShop.DAL.Repository
 
         public IEnumerable<User> getAll()
         {
-            return this.db.Users;
+            return this.db.DbUsers;
         }
 
         public User getById(int id)
         {
-            return this.db.Users.Find(id);
+            return this.db.DbUsers.Find(id);
         }
 
         public User Update(User item)

@@ -2,6 +2,7 @@
 using ImagePinned.BLL.Interface;
 using ListShop.BLL.EntitesDTO;
 using ListShop.Web.Models;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace ListShop.Web.Controllers
 {
     public class ImageController : Controller
     {
-        IService service;
+       
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -23,11 +24,12 @@ namespace ListShop.Web.Controllers
             }
         }
 
-        public ImageController(IService service)
+        private IService service
         {
-
-            this.service = service;
-
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<IService>();
+            }
         }
         // GET: Image
         public ActionResult Index()

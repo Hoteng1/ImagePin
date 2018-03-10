@@ -1,7 +1,10 @@
-﻿using ListShop.DAL.Indentity.EF;
+﻿using ImagePinned.DAL.Interfaces;
+using ListShop.DAL.Entities;
+using ListShop.DAL.Indentity.EF;
 using ListShop.DAL.Indentity.Entietis;
 using ListShop.DAL.Indentity.Indenties;
 using ListShop.DAL.Indentity.Intefaces;
+using ListShop.DAL.Repository;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -66,6 +69,78 @@ namespace ListShop.DAL.Indentity.Repository
                 }
                 this.disposed = true;
             }
+        }
+
+        private UserRepository userRepository;
+
+        private PinRepository pinRepository;
+
+        private ImageRepository imageRepository;
+
+        private PreferRepository preferRepository;
+
+        private LikeRepository likeRepository;
+
+       
+
+
+        public IRepository<User> Users
+        {
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new UserRepository(db);
+                return userRepository;
+            }
+        }
+
+        public IRepository<Pin> Pins
+        {
+            get
+            {
+                if (pinRepository == null)
+                    pinRepository = new PinRepository(db);
+                return pinRepository;
+            }
+        }
+
+        public IRepository<Prefer> Prefers
+        {
+            get
+            {
+                if (preferRepository == null)
+                    preferRepository = new PreferRepository(db);
+                return preferRepository;
+            }
+        }
+
+        public IRepository<Image> Images
+        {
+            get
+            {
+                if (imageRepository == null)
+                    imageRepository = new ImageRepository(db);
+                return imageRepository;
+            }
+        }
+
+        public IRepository<Like> Likes
+        {
+            get
+            {
+                if (likeRepository == null)
+                    likeRepository = new LikeRepository(db);
+                return likeRepository;
+            }
+        }
+
+
+
+       
+
+        public void Save()
+        {
+            db.SaveChanges();
         }
     }
 }

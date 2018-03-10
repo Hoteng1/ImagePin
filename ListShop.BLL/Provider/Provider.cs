@@ -10,6 +10,7 @@ using AutoMapper;
 using ListShop.BLL.EntitesDTO;
 using ListShop.DAL.Entities;
 using System.Security.Cryptography;
+using ListShop.DAL.Indentity.Intefaces;
 
 namespace ImagePinned.BLL.Provider
 {

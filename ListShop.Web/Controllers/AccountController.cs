@@ -33,10 +33,12 @@ namespace ListShop.Web.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
-        private IService service;
-        public AccountController(IService service)
+        private IService service
         {
-            this.service = service;
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<IService>();
+            }
         }
 
         public ActionResult Login()

@@ -21,7 +21,13 @@ namespace ImagePinned.Web.Controllers
 {
     public class HomeController : Controller
     {
-        IService service;
+        private IService service
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<IService>();
+            }
+        }
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -38,12 +44,7 @@ namespace ImagePinned.Web.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<IUserService>();
             }
         }
-        public HomeController(IService service)
-        {
-
-            this.service = service;
-
-        }
+       
         // GET: Home
         [Authorize]
         public ActionResult Index()

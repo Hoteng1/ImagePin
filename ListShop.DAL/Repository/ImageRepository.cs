@@ -1,6 +1,7 @@
-﻿using ImagePinned.DAL.EF;
+﻿
 using ImagePinned.DAL.Interfaces;
 using ListShop.DAL.Entities;
+using ListShop.DAL.Indentity.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace ListShop.DAL.Repository
 {
     public class ImageRepository : IRepository<Image>
     {
-        PinContext db;
+        ApplicationContext db;
 
-        public ImageRepository(PinContext db)
+        public ImageRepository(ApplicationContext db)
         {
             this.db = db;
         }
@@ -27,7 +28,7 @@ namespace ListShop.DAL.Repository
         public void Delete(int id)
         {
             Image image = this.db.Images.Find(id);
-            if(image!=null)
+            if (image != null)
             {
                 this.db.Images.Remove(image);
                 this.db.SaveChanges();
@@ -46,7 +47,7 @@ namespace ListShop.DAL.Repository
 
         public Image Update(Image item)
         {
-            
+
             db.Entry(item).State = System.Data.Entity.EntityState.Modified;
             this.db.SaveChanges();
 

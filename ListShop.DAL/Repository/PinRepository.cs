@@ -1,6 +1,7 @@
-﻿using ImagePinned.DAL.EF;
+﻿
 using ImagePinned.DAL.Interfaces;
 using ListShop.DAL.Entities;
+using ListShop.DAL.Indentity.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace ListShop.DAL.Repository
 {
     class PinRepository : IRepository<Pin>
     {
-        PinContext db;
+        ApplicationContext db;
 
-        public PinRepository(PinContext db)
+        public PinRepository(ApplicationContext db)
         {
             this.db = db;
         }
