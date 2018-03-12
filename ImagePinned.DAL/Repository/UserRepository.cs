@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using ListShop.DAL.Validation;
 
 namespace ImagePinned.DAL.Repository
 {
@@ -39,7 +41,14 @@ namespace ImagePinned.DAL.Repository
 
         public IEnumerable<User> getAll()
         {
-            return this.db.DbUsers;
+            try
+            {
+                return this.db.DbUsers.ToList();
+            }
+            catch (SqlException ex)
+            {
+                throw new DALException(ex.Message);
+            }
         }
 
         public User getById(int id)

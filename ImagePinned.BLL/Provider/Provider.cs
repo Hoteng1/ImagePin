@@ -8,6 +8,8 @@ using ImagePinned.DAL.Entities;
 using System.Security.Cryptography;
 using ImagePinned.DAL.Indentity.Intefaces;
 using System.Data.SqlClient;
+using ListShop.DAL.Validation;
+using ListShop.BLL.Validation;
 
 namespace ImagePinned.BLL.Provider
 {
@@ -95,13 +97,21 @@ namespace ImagePinned.BLL.Provider
 
         public IEnumerable<ImageDTOView> ImageGetAll()
         {
-            List<Image> list = new List<Image>(DataBase.Images.getAll());
-            Mapper.Initialize(cfg => cfg.CreateMap<Image, ImageDTOView>().ForMember("Own_Name", org=>org.MapFrom(c=>getUserNameById(c.Id_Ownd))).ForMember("" +
-                "Pin", ops => ops.MapFrom(c => getPinById(c.Id_pin))));
-            var images =
-               Mapper.Map<IEnumerable<Image>, List<ImageDTOView>> (list);
+            try
+            {
+                List<Image> list = new List<Image>(DataBase.Images.getAll());
+                Mapper.Initialize(cfg => cfg.CreateMap<Image, ImageDTOView>().ForMember("Own_Name", org => org.MapFrom(c => getUserNameById(c.Id_Ownd))).ForMember("" +
+                    "Pin", ops => ops.MapFrom(c => getPinById(c.Id_pin))));
+                var images =
+                   Mapper.Map<IEnumerable<Image>, List<ImageDTOView>>(list);
 
-            return images;
+                return images;
+            }
+            catch(DALException ex)
+            {
+                throw new BLLException(ex.Message);
+            }
+           
         }
 
         public IEnumerable<ImageDTOView> ImageGetAll(string Pin)
@@ -131,14 +141,21 @@ namespace ImagePinned.BLL.Provider
 
         private string getUserNameById(int id)
         {
-            
-            var users = from c in DataBase.Users.getAll() where c.Id==id select c.Login;
-            string result = "anonym";
-            foreach (string name in users)
+            try
             {
-                result = name;
+                var users = from c in DataBase.Users.getAll() where c.Id == id select c.Login;
+                string result = "anonym";
+                foreach (string name in users)
+                {
+                    result = name;
+                }
+                return result;
             }
-            return result;
+            catch(DALException ex)
+            {
+                throw new BLLException(ex.Message);
+            }
+          
         }
         
         private string getPinById(int id)
