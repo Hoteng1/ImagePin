@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
+using ListShop.DAL.Validation;
+using System.Data.SqlClient;
 
 namespace ImagePinned.DAL.Indentity.Repository
 {
@@ -28,6 +31,9 @@ namespace ImagePinned.DAL.Indentity.Repository
             userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
             roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(db));
             clientManager = new ClientManager(db);
+            
+                
+
         }
 
         public ApplicationUserManager UserManager
@@ -81,7 +87,7 @@ namespace ImagePinned.DAL.Indentity.Repository
 
         private LikeRepository likeRepository;
 
-       
+
 
 
         public IRepository<User> Users
@@ -134,9 +140,10 @@ namespace ImagePinned.DAL.Indentity.Repository
             }
         }
 
+        
 
 
-       
+
 
         public void Save()
         {

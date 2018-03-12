@@ -13,9 +13,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ListShop.Web.Validation;
 
 namespace ImagePinned.Web.Controllers
 {
+    [ServerException]
     public class AccountController : Controller
     {
         private IUserService UserService

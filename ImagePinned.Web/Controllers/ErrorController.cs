@@ -14,5 +14,17 @@ namespace ListShop.Web.Controllers
             Response.StatusCode = 404;
             return View();
         }
+
+        public ActionResult ServerError()
+        {
+            Response.StatusCode = 500;
+            return View();
+        }
+
+        public ActionResult BLLError()
+        {
+            Response.StatusCode = 501;
+            return View();
+        }
     }
 }

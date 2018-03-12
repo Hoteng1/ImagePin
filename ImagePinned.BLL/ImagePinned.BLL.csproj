@@ -74,6 +74,7 @@
     <Compile Include="Interface\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\Provider.cs" />
+    <Compile Include="Validation\BLLException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

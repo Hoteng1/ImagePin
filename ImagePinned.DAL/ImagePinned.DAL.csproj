@@ -80,6 +80,7 @@
     <Compile Include="Repository\PinRepository.cs" />
     <Compile Include="Repository\PreferRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Validation\DALException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -90,5 +91,6 @@
       <DependentUpon>201803100810538_MigrateDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ using ImagePinned.BLL.EntitesDTO;
 using ImagePinned.DAL.Entities;
 using System.Security.Cryptography;
 using ImagePinned.DAL.Indentity.Intefaces;
+using System.Data.SqlClient;
 
 namespace ImagePinned.BLL.Provider
 {
@@ -17,6 +18,8 @@ namespace ImagePinned.BLL.Provider
         public Provider(IUnitOfWork unitOfWork)
         {
             DataBase = unitOfWork;
+            
+            
         }
 
         public void Dispose()
@@ -588,5 +591,7 @@ namespace ImagePinned.BLL.Provider
 
             DataBase.Users.Delete(id_user);
         }
+
+       
     }
 }

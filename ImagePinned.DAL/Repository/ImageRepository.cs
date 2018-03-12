@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace ImagePinned.DAL.Repository
 {
@@ -37,7 +38,9 @@ namespace ImagePinned.DAL.Repository
 
         public IEnumerable<Image> getAll()
         {
-            return this.db.Images;
+
+            return this.db.Images.ToList();
+
         }
 
         public Image getById(int id)

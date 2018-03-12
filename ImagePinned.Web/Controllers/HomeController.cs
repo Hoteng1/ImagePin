@@ -16,9 +16,11 @@ using System.Threading.Tasks;
 using ImagePinned.BLL.Identity.Interfaces;
 using Microsoft.AspNet.Identity.Owin;
 using System.Security.Claims;
+using ListShop.Web.Validation;
 
 namespace ImagePinned.Web.Controllers
 {
+    [ServerException]
     public class HomeController : Controller
     {
         private IService service
